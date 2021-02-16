@@ -1,4 +1,4 @@
-package template;
+package round2_2020;
 
 import java.util.Scanner;
 
@@ -40,13 +40,69 @@ public class Solution {
 	}
 
 	private Object solve() {
-		// TODO solve case here
-		return "";
+		long L = sc.nextLong(), R = sc.nextLong();
+		long D = Math.abs(L - R);
+		double rt = Math.sqrt(2 * D);
+		long f = (long) rt;
+		if (f * (f + 1) > 2 * D) {
+			--f;
+		}
+		long n = f;
+		if (L < R) {
+			R -= (f * (f + 1)) / 2;
+		} else {
+			L -= (f * (f + 1)) / 2;
+		}
+		if (L < R) {
+			long k = findK(R, f);
+			if (k > 0) {
+				n = f + k * 2 - 1;
+				long remR = k * k + f * k;
+				R -= remR;
+				long remL = remR - k - f;
+				L -= remL;
+			}
+		} else {
+			long k = findK(L, f);
+			if (k > 0) {
+				n = f + k * 2 - 1;
+				long remL = k * k + f * k;
+				L -= remL;
+				long remR = remL - k - f;
+				R -= remR;
+			}
+		}
+		if (L >= n + 1 || R >= n + 1) {
+			++n;
+			if (L >= R) {
+				L -=n;
+			} else {
+				R -= n;
+			}
+		}
+		return (n + " " + L + " " + R);
+	}
+
+	long findK(long R, long f) {
+		long lb = 0, rb = 1000000000L + 1;
+		for (int i = 0; i < 34; ++i) {
+			long k = (lb + rb) / 2;
+			long res = k * k + f * k;
+			if (res == R) {
+				return k;
+			}
+			if (res > R) {
+				rb = k;
+			} else {
+				lb = k;
+			}
+		}
+		return lb;
 	}
 
 	/* UTIL classes and methods */
 	private static void out(Object o) {
-		System.out.println(o != null ? o.toString() : o);
+		System.out.println(o);
 	}
 
 	private static void out1(Object... args) {
