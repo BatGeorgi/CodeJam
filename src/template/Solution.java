@@ -19,12 +19,11 @@ public class Solution {
 		if (multiCase) {
 			int T = sc.nextInt();
 			for (int tc = 1; tc <= T; ++tc) {
-				String pref = "Case #" + tc + ": ";
+				out("Case #" + tc + ": ");
 				Solution s = new Solution(sc);
 				try {
 					s.solve();
 				} catch (Throwable t) {
-					out(pref + t.getMessage());
 					t.printStackTrace();
 				}
 			}
