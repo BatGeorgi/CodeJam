@@ -1,5 +1,6 @@
 package template;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Solution {
@@ -21,8 +22,7 @@ public class Solution {
 				String pref = "Case #" + tc + ": ";
 				Solution s = new Solution(sc);
 				try {
-					Object result = s.solve();
-					out(pref + result);
+					s.solve();
 				} catch (Throwable t) {
 					out(pref + t.getMessage());
 					t.printStackTrace();
@@ -31,17 +31,15 @@ public class Solution {
 		} else {
 			Solution s = new Solution(sc);
 			try {
-				Object result = s.solve();
-				out(result);
+				s.solve();
 			} catch (Throwable t) {
 				t.printStackTrace();
 			}
 		}
 	}
 
-	private Object solve() {
+	private void solve() {
 		// TODO solve case here
-		return "";
 	}
 
 	/* UTIL classes and methods */
@@ -49,7 +47,7 @@ public class Solution {
 		System.out.println(o != null ? o.toString() : o);
 	}
 
-	private static void out1(Object... args) {
+	private static void out1(Object[] args) {
 		if (args.length == 0) {
 			return;
 		}
@@ -57,6 +55,22 @@ public class Solution {
 		for(int i = 1; i < args.length; ++i) {
 			outf(' ');
 			outf(args[i]);
+		}
+		System.out.println();
+	}
+
+	private static void out1(List<Object> args) {
+		if (args.isEmpty()) {
+			return;
+		}
+		boolean first = true;
+		for (Object o : args) {
+			if (!first) {
+				out(' ');
+			} else {
+				first = false;
+			}
+			out(o);
 		}
 		System.out.println();
 	}
