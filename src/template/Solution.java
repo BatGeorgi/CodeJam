@@ -19,7 +19,7 @@ public class Solution {
 		if (multiCase) {
 			int T = sc.nextInt();
 			for (int tc = 1; tc <= T; ++tc) {
-				out("Case #" + tc + ": ");
+				outf("Case #" + tc + ": ");
 				Solution s = new Solution(sc);
 				try {
 					s.solve();
